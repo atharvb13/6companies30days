@@ -1,0 +1,18 @@
+class Solution {
+    public int totalFruit(int[] fruits) {
+        int ans=0;
+        int n=fruits.length;
+        Map<Integer,Integer> map=new HashMap<>();
+        int start=0;
+        for(int i=0;i<n;i++){
+            map.put(fruits[i],i);
+            if(map.size()>2){
+                int minInd=Collections.min(map.values());
+                map.remove(fruits[minInd]);
+                start=minInd+1;
+            }
+            ans=Math.max(ans,i-start+1);      
+        }
+        return ans;
+    }
+}
